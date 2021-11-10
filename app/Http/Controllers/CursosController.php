@@ -15,7 +15,7 @@ class CursosController extends Controller
     {
         $curso = Curso::all();
 
-        return view("cursos.home", compact("curso"));
+        return view("cursos.index", compact("curso"));
     }
 
     /**

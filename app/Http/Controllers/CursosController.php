@@ -13,7 +13,7 @@ class CursosController extends Controller
      */
     public function index()
     {
-        $curso = Curso::all();
+        $curso = Curso::latest()->paginate();
 
         return view("cursos.index", compact("curso"));
     }

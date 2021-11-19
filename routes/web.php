@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\MessagesController;
+use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('cursos.home');
-});
+})->name('home');
 
-Route::get('/cursos', [CursosController::class, 'index'])->name('index');
+Route::get('/contact', function () {
+    return view('cursos.contact');
+})->name('contact');
+
+Route::get('/about', function () {
+    return view('cursos.about');
+})->name('about');
+
+Route::get('/cursos', [CursosController::class, 'index'])->name('cursos');
+Route::post('contact', [MessagesController::class, 'store']);

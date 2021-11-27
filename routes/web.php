@@ -28,5 +28,9 @@ Route::get('/about', function () {
     return view('cursos.about');
 })->name('about');
 
-Route::get('/cursos', [CursosController::class, 'index'])->name('cursos');
+Route::get('/cursos', [CursosController::class, 'index'])->name('cursos.index');
+Route::post('/cursos', [CursosController::class, 'store'])->name('cursos.store');
+Route::get('/cursos/crear', [CursosController::class, 'create'])->name('cursos.crear');
+Route::get('/cursos/{cursos}', [CursosController::class, 'show'])->name('cursos.show');
 Route::post('contact', [MessagesController::class, 'store']);
+

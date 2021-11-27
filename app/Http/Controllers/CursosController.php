@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+
 class CursosController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class CursosController extends Controller
      */
     public function create()
     {
-        
+        return view("cursos.create");
     }
 
     /**
@@ -36,7 +37,16 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'url' => 'required',
+            'author' => 'required',
+        ]);
+
+      Curso::create($validatedData);
+      return redirect()->route('cursos.index');     
+       
     }
 
     /**
@@ -45,17 +55,14 @@ class CursosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Curso $cursos)
     {
-        //
+         return view("cursos.show", [
+        'curso' => $cursos
+     ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //

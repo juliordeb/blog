@@ -14,10 +14,10 @@
     }
   </style>
  <ul>
-      <li class="{{setActive('home') }}"> <a href="/"> Inicio </a>  </li>
-      <li class="{{setActive('about') }}"> <a href="/about">Abaout </a> </li>
-      <li class="{{setActive('cursos') }}"> <a href="/cursos">Cursos </a></li>
-      <li class="{{setActive('contact') }}"> <a href="/contact">Contacto</a></li>
+      <li class="{{setActive('home') }}"> <a href="{{route('home')}}"> Inicio </a>  </li>
+      <li class="{{setActive('about') }}"> <a href="{{route('about')}}">Abaout </a> </li>
+      <li class="{{setActive('cursos.*') }}"> <a href="{{route('cursos.index')}}">Cursos </a></li>
+      <li class="{{setActive('contact') }}"> <a href="{{route('contact')}}">Contacto</a></li>
 
   </ul>
 

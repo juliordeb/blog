@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveCursoRequest;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 
@@ -26,7 +27,9 @@ class CursosController extends Controller
      */
     public function create()
     {
-        return view("cursos.create");
+        return view("cursos.create", [
+            'curso' => new Curso
+        ]);
     }
 
     /**
@@ -35,16 +38,11 @@ class CursosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveCursoRequest $request)
     {
-        $validatedData = request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'url' => 'required',
-            'author' => 'required',
-        ]);
+    
+      Curso::create($request->validated());
 
-      Curso::create($validatedData);
       return redirect()->route('cursos.index');     
        
     }
@@ -55,17 +53,19 @@ class CursosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Curso $cursos)
+    public function show(Curso $curso)
     {
          return view("cursos.show", [
-        'curso' => $cursos
+        'curso' => $curso
      ]);
     }
 
     
-    public function edit($id)
+    public function edit(Curso $curso)
     {
-        //
+        return view ('cursos.edit', [
+            'curso' => $curso
+        ]);
     }
 
     /**
@@ -75,9 +75,11 @@ class CursosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Curso $curso, SaveCursoRequest $request)
     {
-        //
+        $curso->update($request->validated());
+
+        return redirect()->route('cursos.show', $curso);
     }
 
     /**
@@ -86,8 +88,11 @@ class CursosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Curso $curso)
     {
-        //
+        $curso->delete();
+        return redirect()->route('cursos.index');     
+
     }
+
 }

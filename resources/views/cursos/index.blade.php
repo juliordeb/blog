@@ -17,7 +17,7 @@
    </li>
      @endforeach
     <br>
-     <form action="{{ route('cursos.crear')}}">
+     <form action="{{ route('cursos.create')}}">
       <button type="submit">Nuevo Curso</button>
      </form>
    

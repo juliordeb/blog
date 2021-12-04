@@ -4,6 +4,13 @@
 
 @section("content")
 <h1>Detalles del Curso</h1>
+<a href="{{route('cursos.edit', $curso)}}">Editar</a>
+<form method="post" action="{{route('cursos.destroy', $curso)}}">
+ @csrf @method('DELETE')
+ <button>Eliminar</button>
+</form>
+
+
 <h2>{{$curso->name}}</h2>
 <p>{{$curso->description}}</p>
 <small>Creado: {{ \Carbon\Carbon::parse($curso->created_at)->diffForHumans() }}</small><br> 

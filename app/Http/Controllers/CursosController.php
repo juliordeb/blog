@@ -79,7 +79,7 @@ class CursosController extends Controller
     {
         $curso->update($request->validated());
 
-        return redirect()->route('cursos.show', $curso);
+        return redirect()->route('cursos.show', $curso)->with("succes", "Curso Actualizado");
     }
 
     /**
@@ -91,8 +91,8 @@ class CursosController extends Controller
     public function destroy(Curso $curso)
     {
         $curso->delete();
-        return redirect()->route('cursos.index');     
-
+        return redirect()->route('cursos.index')->with("succes", "Curso eliminado");  
+        
     }
 
 }

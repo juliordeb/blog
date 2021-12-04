@@ -16,6 +16,6 @@ class MessagesController extends Controller
 
         ]);
 
-        return "datos validados";
+        return back()->with("succes", "Pronto te responderemos");
     }
 }

@@ -6,9 +6,10 @@
 
 @section("content")
 <h1>Contactanos</h1>
+
  @if(session('succes'))
-  {{ succes }}
- @endif
+  {!! session('succes') !!}
+ @else
 
 <form method="POST" action="{{ route('contact')}}">
 @csrf
@@ -27,6 +28,7 @@
 
 <button>Enviar</button>
 
+@endif
 
 
 </form>

@@ -21,8 +21,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/contact', function () {
-    return view('cursos.contact');
+    return view('messages.contact');
 })->name('contact');
+
+Route::post('contact', [MessagesController::class, 'store']);
+
 
 Route::get('/about', function () {
     return view('cursos.about');
@@ -30,5 +33,4 @@ Route::get('/about', function () {
 
 Route::resource('cursos', CursosController::class);
 
-Route::post('contact', [MessagesController::class, 'store']);
 

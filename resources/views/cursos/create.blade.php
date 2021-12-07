@@ -3,6 +3,7 @@
 
 @include('partials.validation-errors')
 
+
 @section("content")
 <h1>Nuevo Curso</h1>
 

@@ -7,11 +7,7 @@
 @section("content")
 <h1>Contactanos</h1>
 
- @if(session('succes'))
-  {!! session('succes') !!}
- @else
-
-<form method="POST" action="{{ route('contact')}}">
+ <form method="POST" action="{{ route('contact')}}">
 @csrf
 <input name="name" placeholder="Nombre.." value= "{{old('name')}}"><br>
 {!! $errors->first('name', '<small>:message</small><br>') !!}
@@ -28,8 +24,6 @@
 
 <button>Enviar</button>
 
-@endif
-
-
 </form>
+
 @endsection

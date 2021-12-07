@@ -8,11 +8,11 @@ use App\Models\Curso;
 
 class CursosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
+    
     public function index()
     {
         $curso = Curso::latest()->paginate();
@@ -43,7 +43,7 @@ class CursosController extends Controller
     
       Curso::create($request->validated());
 
-      return redirect()->route('cursos.index');     
+      return redirect()->route('cursos.index')->with('succes', "Curso creado con exito!");     
        
     }
 
@@ -68,13 +68,7 @@ class CursosController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Curso $curso, SaveCursoRequest $request)
     {
         $curso->update($request->validated());
@@ -82,12 +76,7 @@ class CursosController extends Controller
         return redirect()->route('cursos.show', $curso)->with("succes", "Curso Actualizado");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Curso $curso)
     {
         $curso->delete();

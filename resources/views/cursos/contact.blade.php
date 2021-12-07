@@ -6,10 +6,7 @@
 
 @section("content")
 <h1>Contactanos</h1>
- @if(session('succes'))
-  {{ succes }}
- @endif
-
+   
 <form method="POST" action="{{ route('contact')}}">
 @csrf
 <input name="name" placeholder="Nombre.." value= "{{old('name')}}"><br>
